@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hm_shop/pages/Cart/index.dart';
+import 'package:hm_shop/pages/Category/index.dart';
+import 'package:hm_shop/pages/Home/index.dart';
+import 'package:hm_shop/pages/Mine/index.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -8,14 +12,67 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int _currentIndex = 0;
+  final List<Map<String, String>> _tabList = [
+    {
+      'icon': 'lib/assets/ic_public_home_normal.png',
+      'active_icon': 'lib/assets/ic_public_home_active.png',
+      'text': '首页',
+    },
+    {
+      'icon': 'lib/assets/ic_public_pro_normal.png',
+      'active_icon': 'lib/assets/ic_public_pro_active.png',
+      'text': '分类',
+    },
+    {
+      'icon': 'lib/assets/ic_public_cart_normal.png',
+      'active_icon': 'lib/assets/ic_public_cart_active.png',
+      'text': '购物车',
+    },
+    {
+      'icon': 'lib/assets/ic_public_my_normal.png',
+      'active_icon': 'lib/assets/ic_public_my_active.png',
+      'text': '我的',
+    },
+  ];
+
+  List<BottomNavigationBarItem> _getNavigationBarItems() {
+    return List.generate(_tabList.length, (idx) {
+      return BottomNavigationBarItem(
+        icon: Image.asset('${_tabList[idx]['icon']}', width: 30, height: 30),
+        activeIcon: Image.asset(
+          '${_tabList[idx]['active_icon']}',
+          width: 30,
+          height: 30,
+        ),
+        label: _tabList[idx]['text'],
+      );
+    });
+  }
+
+  List<Widget> _getChildren() {
+    return [HomeView(), CategoryView(), CartView(), MineView()];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('主页'),
+      // appBar: AppBar(
+      //   title: const Text('主页'),
+      // ),
+      body: SafeArea(
+        child: IndexedStack(index: _currentIndex, children: _getChildren()),
       ),
-      body: Center(
-        child: const Text('主页'),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.black,
+        showUnselectedLabels: true,
+        unselectedItemColor: Colors.grey,
+        onTap: (value) {
+          _currentIndex = value;
+          setState(() {});
+        },
+        currentIndex: _currentIndex,
+        items: _getNavigationBarItems(),
       ),
     );
   }
