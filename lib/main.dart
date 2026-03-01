@@ -4,6 +4,14 @@ void main() {
   runApp(const MyApp());
 }
 
+void test2() {
+  
+}
+
+void test() {
+  print('for test');
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
