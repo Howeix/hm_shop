@@ -10,6 +10,6 @@ class MineView extends StatefulWidget {
 class _MineViewState extends State<MineView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(child: const Text('我的'),);
   }
 }

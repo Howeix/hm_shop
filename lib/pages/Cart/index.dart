@@ -10,6 +10,6 @@ class CartView extends StatefulWidget {
 class _CartViewState extends State<CartView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(child: const Text('购物车'),);
   }
 }
