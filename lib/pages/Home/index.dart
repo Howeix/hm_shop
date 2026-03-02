@@ -4,6 +4,7 @@ import 'package:hm_shop/components/Home/HMHot.dart';
 import 'package:hm_shop/components/Home/HMMoreList.dart';
 import 'package:hm_shop/components/Home/HMSlider.dart';
 import 'package:hm_shop/components/Home/HMSuggestion.dart';
+import 'package:hm_shop/viewmodels/home.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -27,7 +28,7 @@ class _HomeViewState extends State<HomeView> {
       SliverToBoxAdapter(child: HMCategory()),
       SliverToBoxAdapter(child: HMSuggestion()),
       SliverToBoxAdapter(child: HMHot()),
-      SliverToBoxAdapter(child: SizedBox(height: 10,),),
+      SliverToBoxAdapter(child: SizedBox(height: 10)),
       HMMoreList(),
       // SliverToBoxAdapter(child: HMHot(),),
     ];
