@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:hm_shop/api/home.dart';
 import 'package:hm_shop/viewmodels/home.dart';
 
 // ignore: must_be_immutable
@@ -13,27 +14,19 @@ class HMSlider extends StatefulWidget {
 class _HMSliderState extends State<HMSlider> {
   final CarouselSliderController _carouselSliderController =
       CarouselSliderController();
-  final List<BannerItem> _bannerList = [
-    BannerItem(
-      id: '1',
-      imgUrl:
-          "https://img2.baidu.com/it/u=1916085022,2414154081&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=611",
-    ),
-    BannerItem(
-      id: '2',
-      imgUrl:
-          "https://img2.baidu.com/it/u=3844016614,3264779257&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1067",
-    ),
-    BannerItem(
-      id: '3',
-      imgUrl:
-          "https://img0.baidu.com/it/u=4279639265,3959979430&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1400",
-    ),
-  ];
+
+  List<BannerItem> _bannerList = [];
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _getBannerList();
+  }
+
+  void _getBannerList() async {
+    _bannerList = await getBannerListAPI();
+    setState(() {});
   }
 
   int _currentBannerIndex = 0;
@@ -110,7 +103,7 @@ class _HMSliderState extends State<HMSlider> {
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 300),
                 height: 8,
-                width: _currentBannerIndex == idx ? 40: 20,
+                width: _currentBannerIndex == idx ? 40 : 20,
                 margin: EdgeInsets.only(left: 8),
                 decoration: BoxDecoration(
                   color:
