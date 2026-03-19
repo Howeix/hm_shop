@@ -319,3 +319,123 @@ class CategoryItem {
     );
   }
 }
+
+// 特惠推荐相关类
+class SpecialOfferResult {
+  String? id;
+  String? title;
+  List<SubType>? subTypes;
+
+  SpecialOfferResult({this.id, this.title, this.subTypes});
+
+  factory SpecialOfferResult.fromJson(Map<String, dynamic> json) {
+    return SpecialOfferResult(
+      id: json['id'] ?? "",
+      title: json['title'] ?? "",
+      subTypes:
+          json['subTypes'] != null
+              ? (json['subTypes'] as List)
+                  .map((e) => SubType.fromJson(e))
+                  .toList()
+              : [],
+    );
+  }
+}
+
+class SubType {
+  String? id;
+  String? title;
+  GoodsItems? goodsItems;
+
+  SubType({this.id, this.title, this.goodsItems});
+
+  factory SubType.fromJson(Map<String, dynamic> json) {
+    return SubType(
+      id: json['id'] ?? "",
+      title: json['title'] ?? "",
+      goodsItems:
+          json['goodsItems'] != null
+              ? GoodsItems.fromJson(json['goodsItems'])
+              : null,
+    );
+  }
+}
+
+class GoodsItems {
+  int? counts;
+  int? pageSize;
+  int? pages;
+  int? page;
+  List<GoodsItem>? items;
+
+  GoodsItems({this.counts, this.pageSize, this.pages, this.page, this.items});
+
+  factory GoodsItems.fromJson(Map<String, dynamic> json) {
+    return GoodsItems(
+      counts: json['counts'] ?? 0,
+      pageSize: json['pageSize'] ?? 0,
+      pages: json['pages'] ?? 0,
+      page: json['page'] ?? 0,
+      items:
+          json['items'] != null
+              ? (json['items'] as List)
+                  .map((e) => GoodsItem.fromJson(e))
+                  .toList()
+              : [],
+    );
+  }
+}
+
+class GoodsItem {
+  String? id;
+  String? name;
+  String? desc;
+  String? price;
+  String? picture;
+  int? orderNum;
+
+  GoodsItem({
+    this.id,
+    this.name,
+    this.desc,
+    this.price,
+    this.picture,
+    this.orderNum,
+  });
+
+  factory GoodsItem.fromJson(Map<String, dynamic> json) {
+    return GoodsItem(
+      id: json['id'] ?? "",
+      name: json['name'] ?? "",
+      desc: json['desc'] ?? "",
+      price: json['price'] ?? "",
+      picture: json['picture'] ?? "",
+      orderNum: json['orderNum'] ?? 0,
+    );
+  }
+}
+
+class GoodDetailItem extends GoodsItem {
+  int payCount = 0;
+
+  ///商品详情项
+  GoodDetailItem({
+    required super.id,
+    required super.name,
+    required super.price,
+    required super.picture,
+    required super.orderNum,
+    required this.payCount,
+  }) : super(desc: '');
+  factory GoodDetailItem.fromJson(Map<String, dynamic> json) {
+    return GoodDetailItem(
+      id: json['id'].toString(),
+      name: json['name'].toString(),
+      price: json['price'].toString(),
+      picture: json['picture'].toString(),
+      orderNum: json['orderNum'] ?? 0,
+      payCount: json['payCount'] ?? 0,
+    );
+  }
+
+}

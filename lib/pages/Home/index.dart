@@ -27,6 +27,7 @@ class _HomeViewState extends State<HomeView> {
       SliverToBoxAdapter(child: HMSlider()),
       SliverToBoxAdapter(child: HMCategory()),
       SliverToBoxAdapter(child: HMSuggestion()),
+      SliverToBoxAdapter(child: SizedBox(height: 2)),
       SliverToBoxAdapter(child: HMHot()),
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       HMMoreList(),

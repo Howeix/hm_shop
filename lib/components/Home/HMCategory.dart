@@ -40,7 +40,6 @@ class _HMCategoryState extends State<HMCategory> {
               borderRadius: BorderRadius.circular(10),
             ),
             width: 90,
-            // height: 30,
             margin: EdgeInsets.fromLTRB(3, 6, 3, 6),
             child: Column(
               children: [

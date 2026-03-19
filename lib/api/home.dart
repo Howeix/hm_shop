@@ -15,3 +15,36 @@ Future<List<CategoryItem>> getCategoryListAPI() async {
     return CategoryItem.fromJson(e as Map<String, dynamic>);
   }).toList();
 }
+
+///特惠推荐列表
+Future<SpecialOfferResult> getSpecialOfferListAPI() async {
+  return SpecialOfferResult.fromJson(
+    await dioRequest.get(HttpConstants.PRODUCT_LIST),
+  );
+}
+
+///爆款推荐
+Future<SpecialOfferResult> getInVogueListAPI() async {
+  return SpecialOfferResult.fromJson(
+    await dioRequest.get(HttpConstants.IN_VOGUE_LIST),
+  );
+}
+
+///一站式买全
+Future<SpecialOfferResult> getOneStopListAPI() async {
+  return SpecialOfferResult.fromJson(
+    await dioRequest.get(HttpConstants.ONE_STOP_LIST),
+  );
+}
+
+///商品详情
+Future<List<GoodDetailItem>> getGoodDetailAPI(
+  {required Map<String, dynamic> params}
+) async {
+  return ((await dioRequest.get(HttpConstants.RECOMMEND_LIST, params: params))
+          as List)
+      .map((e) {
+        return GoodDetailItem.fromJson(e as Map<String, dynamic>);
+      })
+      .toList();
+}
